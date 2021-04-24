@@ -1,5 +1,6 @@
-# "Empythy": Non violent communication helper wrote in python by Diego Ferrari Bruno
-# With the word lists from:
+# Empythy: Empatic (Non-violent) communication helper wrote in python by Diego Ferrari Bruno to everybody. 
+# (PLEASE IMPROVE IT!)
+# With word lists from:
 # (c) 2005 by Center for Nonviolent Communication
 # Website: www.cnvc.org Email: cnvc@cnvc.org
 # Phone: +1.505-244-4041
@@ -24,8 +25,6 @@ good = {
     "REFRESHED": ["refreshed", "enlivened", "rejuvenated", "renewed", "rested", "restored", "revived", "Feelings",
                   "when", "your", "needs", "are"]
 }
-
-# if not satisfied:
 notgood = {
     "AFRAID": ["afraid", "apprehensive", "dread", "foreboding", "frightened", "mistrustful", "panicked", "petrified",
                "scared", "suspicious", "terrified", "wary", "worried"],
@@ -73,7 +72,6 @@ needs = {
                 "mourning", "participation", "purpose", "self-expression", "stimulation", "to matter", "understanding"
                 ]
 }
-
 satisfied = 0
 feeling = input(" - How are you feeling today? (if you need a list of feelings, type: list)\n")
 # satisfied = input("are you feeling good y/n?")
@@ -116,10 +114,8 @@ for i in needs:
             for b in needs:
                 print(b, needs[b])
             break
-        #       print("This is a list of feelings that might be useful to you.")
-        #       for c in good: print(c, good[c])
         break
-print(f"- Maybe you could tell someone that you are feeling {feeling} \nbecause you need {need} and than ask them "
-      "to do something concrete (or stop doing it) that would make you life more joyful!")
-print("Aways remember that our freedom lies in the space between the input and the response.")
-
+print(f"- If you want to talk to someone, maybe you could tell them how you are feeling {feeling} \n because you need {need} and than ask them "
+      "to do (or stop doing) something concrete that would make your life more joyful!")
+print("Aways: remember that our freedom of choice lies in the space/time between the input and the response.")
+print("Ah.. just one more thing: there are many people in the Open Source Community \n that may count on YOUR help to improve the world!")
