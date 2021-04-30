@@ -7,6 +7,8 @@ The godot project can read a text and pick words from it. It Substitute dots "."
 and also adds and extra space at the end of the new_text input ! 
 That makes the trick that differs "safe " from "safety ". Got it?)
 
+It also has reads a few commands like: help, new, feelings, and needs.
+
 So My Name is Diego Ferrari Bruno and I think, code, and make it happen the most prototyped way as possible.
 I hope you can understand my code! if not, just ask me, i will be happy to help if i can. And if my hand is not hurt.
 diegoferraribr1 on twitter or check
