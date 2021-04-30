@@ -10,14 +10,13 @@ So My Name is Diego Ferrari Bruno and I think, code, and make it happen the most
 I hope you can understand my code! if not, just ask me, i will be happy to help if i can.
 diegoferraribr1 on twitter
 
-Use it as you like. 
-
-but please remember:
-
-# Empythy: Empathic (Non-violent) communication helper wrote first in python than in GDScript
-# by Diego Ferrari Bruno to everybody and Angelica Rente
-# (PLEASE USE IT BUT IMPROVE IT!)
-# With word lists from:
-# (c) 2005 by Center for Nonviolent Communication
-# Website: www.cnvc.org Email: cnvc@cnvc.org
-# Phone: +1.505-244-4041
+Use it as you like but please remember:
+/*
+Empythy: Empathic (Non-violent) communication helper wrote first in python than in GDScript
+by Diego Ferrari Bruno to everybody and Angelica Rente
+(PLEASE USE IT BUT IMPROVE IT!)
+With word lists from:
+(c) 2005 by Center for Nonviolent Communication
+Website: www.cnvc.org Email: cnvc@cnvc.org
+Phone: +1.505-244-4041
+*/
