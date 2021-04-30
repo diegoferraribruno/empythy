@@ -32,6 +32,8 @@ var notgood = {
 }
 var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
 var sentences = {"welcome":"- How are you feeling today? (if you need a list of feelings, type: feelings)\n","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
+var help = '-Hi, I am afraid that all that I have is a list of these commands: \n-needs : It you present you with NVC needs list \n-feelings : will present a list of words to describe your feelings" \n -new : will clear eaverything. \n -help : this is it.'
+
 var needs = {
 	"CONNECTION": ["connection", "acceptance", "affection", "appreciation", "belonging", "cooperation", "communication",
 				   "closeness", "community", "companionship", "compassion", "consideration", "consistency", "empathy",
@@ -52,6 +54,7 @@ var needs = {
 var satisfied = 0
 var text = ""
 func _ready():
+	$LineEdit.grab_focus()
 	get_node("Print").append_bbcode(str(sentences["welcome"]))
 var havewords = []
 var haveneeds = []
@@ -60,9 +63,14 @@ var inputs = 0
 func _on_LineEdit_text_entered(new_text):
 	get_node("Print").append_bbcode(str("[color=#dfb000]- "+str(new_text)+"[/color]\n"))
 	new_text = new_text.to_lower() +" "
-	
+	new_text = new_text.replace(",", " ");
+	new_text = new_text.replace(".", " ");
 	$LineEdit.clear()
 	inputs += 1
+	if new_text == "help ":
+			get_node("Print").append_bbcode(str(help))
+#			list(needs)
+			get_node("Print").append_bbcode(str("\n"))
 	if new_text == "new ":
 		get_node("Print").set_bbcode("")
 		haveneeds = []

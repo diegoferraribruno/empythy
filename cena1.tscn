@@ -27,4 +27,5 @@ margin_bottom = 306.211
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
