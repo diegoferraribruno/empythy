@@ -3,12 +3,14 @@ Empythy is a Non violent communication helper chat bot that was wrote in python 
 Well this project started as a little python study experiment and it was only one word program.
 Godot Ai.gd project is what matters now! (Because The .py needs a serious update on the search!) 
 
-The godot project can read a text and pick words from it Also i added and extra space after the whole new_text ! 
-That makes the serach for black space trick that differs "safe " from "safety ".)
+The godot project can read a text and pick words from it. It Substitute dots "." and commas "," with " " spaces 
+and also adds and extra space at the end of the new_text input ! 
+That makes the trick that differs "safe " from "safety ". Got it?)
 
 So My Name is Diego Ferrari Bruno and I think, code, and make it happen the most prototyped way as possible.
-I hope you can understand my code! if not, just ask me, i will be happy to help if i can.
-diegoferraribr1 on twitter
+I hope you can understand my code! if not, just ask me, i will be happy to help if i can. And if my hand is not hurt.
+diegoferraribr1 on twitter or check
+allmylinks.com/diegoferraribruno
 
 Use it as you like but please remember:
 /*
