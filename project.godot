@@ -17,12 +17,19 @@ _global_script_class_icons={
 config/name="Empythy - GoBot"
 run/main_scene="res://cena1.tscn"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 0.541176 )
+config/icon="res://icon.png"
 
 [display]
 
 window/size/width=640
 window/size/height=320
+window/size/resizable=false
+window/size/borderless=true
+window/dpi/allow_hidpi=true
+window/per_pixel_transparency/allowed=true
+window/per_pixel_transparency/enabled=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

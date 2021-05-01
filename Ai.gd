@@ -10,7 +10,7 @@ var good = {
 	"INSPIRED": ["inspired", "amazed", "awed", "wonder"],
 	"JOYFUL": ["joyful", "amused", "delighted", "glad", "happy", "jubilant", "pleased", "tickled"],
 	"EXHILARATED": ["exhilarated", "blissful", "ecstatic", "elated", "enthralled", "exuberant", "radiant", "rapturous","thrilled"],
-	"PEACEFUL": ["peaceful", "calm", "clear", "headed", "comfortable", "centered", "content", "equanimous", "fulfilled","mellow", "quiet", "relaxed", "relieved", "satisfied", "serene", "still", "tranquil", "trusting"],
+	"PEACEFUL": ["peaceful", "calm", "clear headed", "comfortable", "centered", "content", "equanimous", "fulfilled","mellow", "quiet", "relaxed", "relieved", "satisfied", "serene", "still", "tranquil", "trusting"],
 	"REFRESHED": ["refreshed", "enlivened", "rejuvenated", "renewed", "rested", "restored", "revived"]
 }
 var notgood = {
@@ -25,7 +25,7 @@ var notgood = {
 	"FATIGUE": ["fatigue", "beat", "burnt out", "depleted", "exhausted", "lethargic", "listless", "sleepy", "tired","weary", "worn out"],
 	"PAIN": ["pain", "agony", "anguished", "bereaved", "devastated", "grief", "heartbroken", "hurt", "lonely","miserable", "regretful", "remorseful"],
 	"SAD": ["sad", "depressed", "dejected", "despair", "despondent", "disappointed", "discouraged", "disheartened","forlorn", "gloomy", "heavy", "hearted", "hopeless", "melancholy", "unhappy", "wretched"],
-	"TENSE": ["tense", "anxious", "cranky", "distressed", "distraught", "edgy", "fidgety", "frazzled", "irritable","jittery", "nervous", "overwhelmed", "restless", "stressed", "out"],
+	"TENSE": ["tense", "anxious", "cranky", "distressed", "distraught", "edgy", "fidgety", "frazzled", "irritable","jittery", "nervous", "overwhelmed", "restless", "stressed out"],
 	"VULNERABLE": ["vulnerable", "fragile", "guarded", "helpless", "insecure", "leery", "reserved", "sensitive","shaky"],
 	"YEARNING": ["yearning", "envious", "jealous", "longing", "nostalgic", "pining", "wistful"]
 }
@@ -36,8 +36,7 @@ var needs = {
 				   "inclusion", "intimacy", "love", "mutuality", "nurturing", "respect / self - respect", "safety",
 				   "security", "stability", "support", "to know and be known", "to see and be seen",
 				   "to understand and be understood", "trust", "warmth"],
-	"PHYSICAL WELL-BEING": ["physical well-being", "air", "food", "movement", "exercise", "rest", "sleep", "sexual",
-							"expression", "safety", "shelter", "touch", "water"],
+	"PHYSICAL WELL-BEING": ["physical well-being", "air", "food", "movement", "exercise", "rest", "sleep", "sexual expression", "shelter", "touch", "water"],
 	"HONESTY": ["honesty", "authenticity", "integrity", "presence"],
 	"PLAY": ["play", "joy", "humor"],
 	"PEACE": ["peace", "beauty", "communion", "ease", "equality", "harmony", "inspiration", "order"],
@@ -48,33 +47,44 @@ var needs = {
 				]
 }
 var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
-var sentences = {"welcome":"- How are you feeling today? (if you need assistance just type help)\n","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
-var help = '- Hi, I am afraid that all I can tell you is about a list of commands: \n- needs : It you present you a list of NVC words \n- feelings : will present a list of words to describe your feelings" \n- new : will clear aour chat and start over. (So we can pretend we never met!) \n- help : this is it.'
-
+var sentences = {"welcome":"- Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad'or 'good' i will present you some words.","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
+var help = '- Hi, I am afraid that all I can tell you is about a list of commands:" \n- needs : It you present you a list of NVC words \n- feelings : will present a list of words to describe your feelings" \n- new : reset our chat (So we can pretend we never met!) \n- clear : Will wipe out this chatbox \n- bye: Just say it and i will be gone! \n- help : this is it.'
+var hashtags = "#GodotEngine #gamedev #indiedev #indie #indiegame #IndieGameDev #indiegames #game #games #gaming #programming #screenshotsaturday"
 var satisfied = 0
 var text = ""
 var havewords = []
 var haveneeds = []
 var inputs = 0
 var angelica = load("res://addons/1f646.png")
-
+var quiet = false
+var history =[]
 func _ready():
 	angelica(angelica)
 	$LineEdit.grab_focus()
-	get_node("Print").append_bbcode(str(sentences["welcome"]))
+	get_node("Print").append_bbcode(str("\n\n\n\n\n\n -Angelica: "+sentences["welcome"]+""))
 
 func angelica(angelica):
 	get_node("Face").set_texture(angelica)
 
 func _on_LineEdit_text_entered(new_text):
-	get_node("Print").append_bbcode(str("[color=#dfb000]- "+str(new_text)+"[/color]\n"))
+	get_node("Print").append_bbcode(str("[color=#dfb000][right]- "+str(new_text)+"[/right][/color]\n"))
+	history.append(new_text)
 	new_text = " " + new_text.to_lower() + " "
 	new_text = new_text.replace(",", " ");
 	new_text = new_text.replace(".", " ");
 	new_text = new_text.replace("!", " ");
 	$LineEdit.clear()
 	inputs += 1
+	if new_text == " bye ":
+		get_node("Print").append_bbcode(str("Angelica: - Bye! If you need me, reload the page or open the app again.\n"))
+		$Timer.start()
+	if new_text == " clear ":
+		get_node("Print").set_bbcode("")
+	if new_text == " hashtags " or new_text == " # ":
+			get_node("Print").append_bbcode(str(hashtags+"\n"))
 	if new_text == " help ":
+			angelica = load("res://addons/1f937.png")
+			angelica(angelica)
 			get_node("Print").append_bbcode(str(help))
 			get_node("Print").append_bbcode(str("\n"))
 	if new_text == " new ":
@@ -86,14 +96,21 @@ func _on_LineEdit_text_entered(new_text):
 		havewords = []
 		inputs = 0
 		satisfied = 0
-	if new_text == " feelings ":
-		get_node("Print").append_bbcode(str("- This is a list of [color=#dfb000]feelings[/color] that might be useful to you:")+"\n")
-		list(good)
-		get_node("Print").append_bbcode(str("\n"))
-		list(notgood)
-		get_node("Print").append_bbcode(str("\n"))
+	if new_text == " feelings " or new_text == " good " or new_text == " bad ":
+		get_node("Print").append_bbcode(str("Angelica: - This is a list of [color=#dfb000]", new_text,"[/color] that might be useful to you:\n"))
+		if new_text == " good ": 
+			list(good)
+			get_node("Print").append_bbcode(str("\n"))
+		elif new_text == " bad ": 
+			list(notgood)
+			get_node("Print").append_bbcode(str("\n"))
+		else:
+			list(good)
+			get_node("Print").append_bbcode(str("\n"))
+			list(notgood)
+			get_node("Print").append_bbcode(str("\n"))
 	if new_text == " needs ":
-			get_node("Print").append_bbcode(str("- This is a list of NEEDS that might be useful to you:")+"\n")
+			get_node("Print").append_bbcode(str("Angelica: - This is a list of NEEDS that might be useful to you:\n"))
 			list(needs)
 			get_node("Print").append_bbcode(str("\n"))
 	for i in good:
@@ -104,8 +121,8 @@ func _on_LineEdit_text_entered(new_text):
 				angelica = load("res://addons/1f646.png")
 				angelica(angelica)
 				satisfied += 1
-				get_node("Print").append_bbcode(str("- Uhu! You really look "+ i.to_lower()+ "!"))
-				get_node("Print").append_bbcode(str("\n- We might feel this way when our needs are satisfied.\n Can you name one of your needs? (if you need a list type: needs)\n"))
+				get_node("Print").append_bbcode(str("Angelica: - Uhu! You really look "+ i.to_lower()+ "!\n"))
+				get_node("Print").append_bbcode(str("Angelica: - We might feel this way when our needs are satisfied.\n Can you name one of your needs? (if you need a list type: needs)\n"))
 				break
 	for i in notfeeling:
 		for f in notfeeling[i]:
@@ -123,8 +140,8 @@ func _on_LineEdit_text_entered(new_text):
 				angelica = load("res://addons/1f645.png")
 				angelica(angelica)
 				satisfied -= 1
-				get_node("Print").append_bbcode(str("\n- Oh! You are ", i.to_lower(), " aren't you?! \n"))
-				get_node("Print").append_bbcode(str("\n- We might feel this way when our needs are not satisfied.\nCan you identify one of your needs? (for a list of the needs, type: needs)\n"))
+				get_node("Print").append_bbcode(str("Angelica: \n- Oh! You are ", i.to_lower(), " aren't you?! \n"))
+				get_node("Print").append_bbcode(str("Angelica: \n- We might feel this way when our needs are not satisfied.\nCan you identify one of your needs? (for a list of the needs, type: needs)\n"))
 				break
 	if havewords:
 		for i in needs:
@@ -133,30 +150,42 @@ func _on_LineEdit_text_entered(new_text):
 				if new_text.find(y) != -1:
 					if satisfied <= 0:
 						haveneeds.append(y)
-						var angelica = load("res://addons/1f646.png")
+						angelica = load("res://addons/1f646.png")
 						get_node("Face").set_texture(angelica)
-						get_node("Print").append_bbcode(str("- ", i.to_lower(), ", hum?! I miss it too.\n"))
+						get_node("Print").append_bbcode(str("Angelica: - ", i.to_lower(), ", hum?! I miss it too.\n"))
 						break
 					if satisfied > 0:
 						haveneeds.append(y)
-						var angelica = load("res://addons/1f646.png")
+						angelica = load("res://addons/1f646.png")
 						get_node("Face").set_texture(angelica)
-						get_node("Print").append_bbcode(str("- ", i.to_lower(), ", hum?! That is awesome!.\n"))
+						get_node("Print").append_bbcode(str("Angelica: - ", i.to_lower(), ", hum?! That is awesome!.\n"))
 						break
 					if satisfied == 0:
 						haveneeds.append(y)
-						get_node("Print").append_bbcode(str("- I am sorry that I can't say: 'i know how does it feel'... \nI hope that you can find someone real to share your feelings and needs. Bye."))
+						get_node("Print").append_bbcode(str("Angelica: - I am sorry that I can't say: 'i know how does it feel'... \nI hope that you can find someone real to share your feelings and needs. Bye.\n"))
 						break
 	text = ""
-	if inputs == 6:
-		var angelica = load("res://addons/1f647.png")
-		get_node("Face").set_texture(angelica)
-		get_node("Print").append_bbcode(str("\n- If you want to talk to someone, maybe you could tell them how you are feeling ", havewords, "\n because you need", haveneeds, " and than ask them to do (or stop doing) something concrete that would make your life more joyful!\n"))
-	if inputs == 8:
-		get_node("Print").append_bbcode(str("\n- Remember that our freedom of choice lies in the space/time between the input and the response.\n"))
-	if inputs == 9:
-		get_node("Print").append_bbcode(str("\n- Ah.. just one more thing: there are many people in the Open Source Community \n that may count on YOUR help to improve the world!\n"))
-		inputs = 0
+	if !quiet:
+		if inputs == 6:
+			angelica = load("res://addons/1f937.png")
+			angelica(angelica)
+			get_node("Face").set_texture(angelica)
+			get_node("Print").append_bbcode(str("Angelica: \n- If you want to talk to someone, maybe you could tell them how you are feeling ", havewords, "\n because you need", haveneeds, " and than ask them to do (or stop doing) something concrete that would make your life more joyful!\n"))
+		if inputs == 8:
+			get_node("Print").append_bbcode(str("Angelica: \n- Remember that our freedom of choice lies in the space/time between the input and the response.\n"))
+		if inputs == 9:
+			get_node("Print").append_bbcode(str("Angelica: \n- Ah.. just one more thing: there are many people in the Open Source Community \n that may count on YOUR help to improve the world!\n"))
+			inputs = 0
 func list(what) -> void:
 		for i in what:
-			get_node("Print").append_bbcode(str(what[i]))
+			yield(get_tree().create_timer(0.1), "timeout")
+			get_node("Print").append_bbcode(str(" [b]", i, ": [/b]"))
+			for x in what[i]:
+				yield(get_tree().create_timer(0.03), "timeout")
+				get_node("Print").append_bbcode(str(" - ",x))
+
+func _on_Timer_timeout():
+		get_tree().quit()
+
+func _on_Control_gui_input(event):
+	pass
