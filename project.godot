@@ -10,14 +10,13 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
-config/name="New AI Project"
+config/name="Empythy - GoBot"
 run/main_scene="res://cena1.tscn"
-config/icon="res://icon.png"
+boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 0.541176 )
 
 [display]
 
