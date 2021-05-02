@@ -47,7 +47,7 @@ var needs = {
 				]
 }
 var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
-var sentences = {"welcome":"- Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad'or 'good' i will present you some words.","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
+var sentences = {"welcome":"- Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad' or 'good' i will present you some words.","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
 var help = '- Hi, I am afraid that all I can tell you is about a list of commands:" \n- needs : It you present you a list of NVC words \n- feelings : will present a list of words to describe your feelings" \n- new : reset our chat (So we can pretend we never met!) \n- clear : Will wipe out this chatbox \n- bye: Just say it and i will be gone! \n- help : this is it.'
 var hashtags = "#GodotEngine #gamedev #indiedev #indie #indiegame #IndieGameDev #indiegames #game #games #gaming #programming #screenshotsaturday"
 var satisfied = 0
@@ -67,7 +67,7 @@ func angelica(angelica):
 	get_node("Face").set_texture(angelica)
 
 func _on_LineEdit_text_entered(new_text):
-	get_node("Print").append_bbcode(str("[color=#dfb000][right]- "+str(new_text)+"[/right][/color]\n"))
+	get_node("Print").append_bbcode(str("[color=#0d0f0b][right]- "+str(new_text)+"[/right][/color]\n"))
 	history.append(new_text)
 	new_text = " " + new_text.to_lower() + " "
 	new_text = new_text.replace(",", " ");
@@ -97,7 +97,7 @@ func _on_LineEdit_text_entered(new_text):
 		inputs = 0
 		satisfied = 0
 	if new_text == " feelings " or new_text == " good " or new_text == " bad ":
-		get_node("Print").append_bbcode(str("Angelica: - This is a list of [color=#dfb000]", new_text,"[/color] that might be useful to you:\n"))
+		get_node("Print").append_bbcode(str("Angelica: - This is a list of [color=#0d0f0b]", new_text,"[/color] that might be useful to you:\n"))
 		if new_text == " good ": 
 			list(good)
 			get_node("Print").append_bbcode(str("\n"))
@@ -189,3 +189,12 @@ func _on_Timer_timeout():
 
 func _on_Control_gui_input(event):
 	pass
+
+
+func _on_SendButton_button_up():
+	
+	var new_text = get_node("LineEdit").get_text()
+	print(new_text)
+	_on_LineEdit_text_entered(new_text)
+	pass # Replace with function body.
+	pass # Replace with function body.
