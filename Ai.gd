@@ -1,73 +1,33 @@
 extends Node2D
+var ai_name = "Angelica"
+var user = ["id","Me","dfbdfbff"]
 var need = ""
-var good = {
-	"AFFECTIONATE": ["affectionate", "compassionate", "friendly", "loving", "open hearted", "sympathetic", "tender","warm"],
-	"ENGAGED": ["engaged", "absorbed", "alert", "curious", "engrossed", "enchanted", "entranced", "fascinated","interested", "intrigued", "involved", "spellbound", "stimulated"],
-	"HOPEFUL": ["hopeful", "expectant", "encouraged", "optimistic"],
-	"CONFIDENT": ["confident", "empowered", "open", "proud", "safe", "secure"],
-	"EXCITED": ["excited", "amazed", "animated", "ardent", "aroused", "astonished", "dazzled", "eager", "energetic","enthusiastic", "giddy", "invigorated", "lively", "passionate", "surprised", "vibrant"],
-	"GRATEFUL": ["grateful", "appreciative", "moved", "thankful", "touched"],
-	"INSPIRED": ["inspired", "amazed", "awed", "wonder"],
-	"JOYFUL": ["joyful", "amused", "delighted", "glad", "happy", "jubilant", "pleased", "tickled"],
-	"EXHILARATED": ["exhilarated", "blissful", "ecstatic", "elated", "enthralled", "exuberant", "radiant", "rapturous","thrilled"],
-	"PEACEFUL": ["peaceful", "calm", "clear headed", "comfortable", "centered", "content", "equanimous", "fulfilled","mellow", "quiet", "relaxed", "relieved", "satisfied", "serene", "still", "tranquil", "trusting"],
-	"REFRESHED": ["refreshed", "enlivened", "rejuvenated", "renewed", "rested", "restored", "revived"]
-}
-var notgood = {
-	"AFRAID": ["afraid", "apprehensive", "dread", "foreboding", "frightened", "mistrustful", "panicked", "petrified","scared", "suspicious", "terrified", "wary", "worried"],
-	"ANNOYED": ["annoyed", "aggravated", "dismayed", "disgruntled", "displeased", "exasperated", "frustrated","impatient", "irritated", "irked"],
-	"ANGRY": ["angry", "enraged", "furious", "incensed", "indignant", "irate", "livid", "outraged", "resentful"],
-	"AVERSION": ["aversion", "animosity", "appalled", "contempt", "disgusted", "dislike", "hate", "horrified", "hostile", "repulsed"],
-	"CONFUSED": ["confused", "ambivalent", "baffled", "bewildered", "dazed", "hesitant", "lost", "mystified", "perplexed", "puzzled", "torn"],
-	"DISCONNECTED": ["disconnected", "alienated", "aloof", "apathetic", "bored", "cold", "detached", "distant", "distracted", "indifferent", "numb", "removed", "uninterested", "withdrawn"],
-	"DISQUIET": ["disquiet", "agitated", "alarmed", "discombobulated", "disconcerted", "disturbed", "perturbed", "rattled", "restless", "shocked", "startled", "surprised", "troubled", "turbulent", "turmoil", "uncomfortable", "uneasy", "unnerved", "unsettled", "upset"],
-	"EMBARRASSED": ["embarrassed", "ashamed", "chagrined", "flustered", "guilty", "mortified", "self-conscious"],
-	"FATIGUE": ["fatigue", "beat", "burnt out", "depleted", "exhausted", "lethargic", "listless", "sleepy", "tired","weary", "worn out"],
-	"PAIN": ["pain", "agony", "anguished", "bereaved", "devastated", "grief", "heartbroken", "hurt", "lonely","miserable", "regretful", "remorseful"],
-	"SAD": ["sad", "depressed", "dejected", "despair", "despondent", "disappointed", "discouraged", "disheartened","forlorn", "gloomy", "heavy", "hearted", "hopeless", "melancholy", "unhappy", "wretched"],
-	"TENSE": ["tense", "anxious", "cranky", "distressed", "distraught", "edgy", "fidgety", "frazzled", "irritable","jittery", "nervous", "overwhelmed", "restless", "stressed out"],
-	"VULNERABLE": ["vulnerable", "fragile", "guarded", "helpless", "insecure", "leery", "reserved", "sensitive","shaky"],
-	"YEARNING": ["yearning", "envious", "jealous", "longing", "nostalgic", "pining", "wistful"]
-}
-
-var needs = {
-	"CONNECTION": ["connection", "acceptance", "affection", "appreciation", "belonging", "cooperation", "communication",
-				   "closeness", "community", "companionship", "compassion", "consideration", "consistency", "empathy",
-				   "inclusion", "intimacy", "love", "mutuality", "nurturing", "respect / self - respect", "safety",
-				   "security", "stability", "support", "to know and be known", "to see and be seen",
-				   "to understand and be understood", "trust", "warmth"],
-	"PHYSICAL WELL-BEING": ["physical well-being", "air", "food", "movement", "exercise", "rest", "sleep", "sexual expression", "shelter", "touch", "water"],
-	"HONESTY": ["honesty", "authenticity", "integrity", "presence"],
-	"PLAY": ["play", "joy", "humor"],
-	"PEACE": ["peace", "beauty", "communion", "ease", "equality", "harmony", "inspiration", "order"],
-	"AUTONOMY": ["autonomy", "choice", "freedom", "independence", "space", "spontaneity"],
-	"MEANING": ["meaning", "awareness", "celebration of life", "challenge", "clarity", "competence", "consciousness",
-				"contribution", "creativity", "discovery", "efficacy", "effectiveness", "growth", "hope", "learning",
-				"mourning", "participation", "purpose", "self-expression", "stimulation", "to matter", "understanding"
-				]
-}
-var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
-var sentences = {"welcome":"- Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad' or 'good' i will present you some words.","notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.'}
-var help = '- Hi, I am afraid that all I can tell you is about a list of commands:" \n- needs : It you present you a list of NVC words \n- feelings : will present a list of words to describe your feelings" \n- new : reset our chat (So we can pretend we never met!) \n- clear : Will wipe out this chatbox \n- bye: Just say it and i will be gone! \n- help : this is it.'
-var hashtags = "#GodotEngine #gamedev #indiedev #indie #indiegame #IndieGameDev #indiegames #game #games #gaming #programming #screenshotsaturday"
+onready var good = $DB.good
+onready var bad = $DB.bad
+onready var needs = $DB.needs
+onready var notfeeling = $DB.notfeeling
+onready var functions = $DB.functions
+onready var sentences = $DB.sentences
+onready var notes = $DB.notes
+onready var greetings = $DB.greetings
 var satisfied = 0
 var text = ""
 var havewords = []
 var haveneeds = []
 var inputs = 0
 var angelica = load("res://addons/1f646.png")
-var quiet = false
+var sleep = false
 var history =[]
 func _ready():
 	angelica(angelica)
 	$LineEdit.grab_focus()
-	get_node("Print").append_bbcode(str("\n\n\n\n\n\n -Angelica: "+sentences["welcome"]+""))
+	append_text(str("[b]"+ai_name+"[/b]: "+sentences["welcome"]+""))
 
 func angelica(angelica):
 	get_node("Face").set_texture(angelica)
 
 func _on_LineEdit_text_entered(new_text):
-	get_node("Print").append_bbcode(str("[color=#0d0f0b][right]- "+str(new_text)+"[/right][/color]\n"))
+	append_text(str("[color=#"+user[2]+"][right][b]"+user[1]+":[/b] - "+str(new_text)+"[/right][/color]\n"))
 	history.append(new_text)
 	new_text = " " + new_text.to_lower() + " "
 	new_text = new_text.replace(",", " ");
@@ -75,126 +35,194 @@ func _on_LineEdit_text_entered(new_text):
 	new_text = new_text.replace("!", " ");
 	$LineEdit.clear()
 	inputs += 1
+	if new_text == " twitter ":
+		OS.shell_open("https://twitter.com")
+	if new_text == " functions ":
+		for i in functions:
+			append_text(str(i+": "+functions[i][0]+"\n"))
+	if new_text == " edit ":
+		$TextEdit.visible = !$TextEdit.visible
 	if new_text == " bye ":
-		get_node("Print").append_bbcode(str("Angelica: - Bye! If you need me, reload the page or open the app again.\n"))
+		angelica = load("res://addons/1f64b.png")
+		angelica(angelica)
+		append_text(str("[b]"+ai_name+"[/b]: - Bye! If you need me, reload the page or open the app again.\n"))
 		$Timer.start()
 	if new_text == " clear ":
 		get_node("Print").set_bbcode("")
 	if new_text == " hashtags " or new_text == " # ":
-			get_node("Print").append_bbcode(str(hashtags+"\n"))
+		var clipboard = ""
+		for i in notes["hashtags"]:
+			clipboard = clipboard+i
+			append_text(str(i+" "))
+		OS.clipboard = clipboard
+		append_text(str("[b]"+ai_name+"[/b]: - Hashtags copied to clipboard!\n"))
+	if new_text == " time ":
+		var time = "[b]"+ai_name+"[/b]: it's about" + str(datetime_to_string(OS.get_time()))+" according to this OS.\n"
+		append_text(time)
+	if new_text == " date " or new_text == " today ":
+		append_text(str("[b]"+ai_name+"[/b]: - today is", datetime_to_string(OS.get_date())))
 	if new_text == " help ":
-			angelica = load("res://addons/1f937.png")
-			angelica(angelica)
-			get_node("Print").append_bbcode(str(help))
-			get_node("Print").append_bbcode(str("\n"))
+		angelica = load("res://addons/1f937.png")
+		angelica(angelica)
+		for i in functions:
+			append_text(str("[b]"+i+"[/b]: "+functions[i][0]+" \n"))
+			yield(get_tree().create_timer(0.2), "timeout")
+	if new_text == " sleep ":
+		sleep = true
+		angelica = load("res://addons/1f486.png")
+		get_node("Face").set_texture(angelica)
+	if new_text in greetings:
+		angelica = load("res://addons/1f64b.png")
+		get_node("Face").set_texture(angelica)
+		append_text(str(greetings[new_text]))
+		sleep = false
 	if new_text == " new ":
 		get_node("Print").set_bbcode("")
-		get_node("Print").append_bbcode(str(sentences["welcome"]))
-		angelica = load("res://addons/1f646.png")
+		append_text(str(sentences["welcome"]))
+		angelica = load("res://addons/1f64e.png")
 		angelica(angelica)
 		haveneeds = []
 		havewords = []
 		inputs = 0
 		satisfied = 0
 	if new_text == " feelings " or new_text == " good " or new_text == " bad ":
-		get_node("Print").append_bbcode(str("Angelica: - This is a list of [color=#0d0f0b]", new_text,"[/color] that might be useful to you:\n"))
+		append_text(str("[b]"+ai_name+"[/b]: - This is a list of [color=#0d0f0b]", new_text,"[/color] that might be useful to you:\n"))
 		if new_text == " good ": 
 			list(good)
-			get_node("Print").append_bbcode(str("\n"))
-		elif new_text == " bad ": 
-			list(notgood)
-			get_node("Print").append_bbcode(str("\n"))
+			append_text(str("\n"))
+			angelica = load("res://addons/1f481.png")
+			get_node("Face").set_texture(angelica) 
+		elif new_text == " bad ":
+			angelica = load("res://addons/1f64d.png")
+			get_node("Face").set_texture(angelica) 
+			list(bad)
+			append_text(str("\n"))
 		else:
+			angelica = load("res://addons/1f481.png")
+			get_node("Face").set_texture(angelica) 
 			list(good)
-			get_node("Print").append_bbcode(str("\n"))
-			list(notgood)
-			get_node("Print").append_bbcode(str("\n"))
+			append_text(str("\n"))
+			list(bad)
+			append_text(str("\n"))
 	if new_text == " needs ":
-			get_node("Print").append_bbcode(str("Angelica: - This is a list of NEEDS that might be useful to you:\n"))
+			angelica = load("res://addons/1f481.png")
+			get_node("Face").set_texture(angelica) 
+			append_text(str("[b]"+ai_name+"[/b]: - This is a list of NEEDS that might be useful to you:\n"))
 			list(needs)
-			get_node("Print").append_bbcode(str("\n"))
-	for i in good:
-		for x in good[i]:
-			x = " "+ x + " "
-			if new_text.find(x) != -1:
-				havewords.append(x)
-				angelica = load("res://addons/1f646.png")
-				angelica(angelica)
-				satisfied += 1
-				get_node("Print").append_bbcode(str("Angelica: - Uhu! You really look "+ i.to_lower()+ "!\n"))
-				get_node("Print").append_bbcode(str("Angelica: - We might feel this way when our needs are satisfied.\n Can you name one of your needs? (if you need a list type: needs)\n"))
-				break
-	for i in notfeeling:
-		for f in notfeeling[i]:
-			f =  " " + f + " "
-			if new_text.find(f) != -1:
-				angelica = load("res://addons/1f937.png")
-				angelica(angelica)
-				get_node("Print").append_bbcode(str('\n- Did you said: "', f.to_lower(), '"? this is not a feeling.\n"', sentences["notfeeling"],"\n"))
-				break
-	for i in notgood:
-		for y in notgood[i]:
-			y = " " + y + " "
-			if new_text.find(y) != -1:
-				havewords.append(y)
-				angelica = load("res://addons/1f645.png")
-				angelica(angelica)
-				satisfied -= 1
-				get_node("Print").append_bbcode(str("Angelica: \n- Oh! You are ", i.to_lower(), " aren't you?! \n"))
-				get_node("Print").append_bbcode(str("Angelica: \n- We might feel this way when our needs are not satisfied.\nCan you identify one of your needs? (for a list of the needs, type: needs)\n"))
-				break
-	if havewords:
-		for i in needs:
-			for y in needs[i]:
+			append_text(str("\n"))
+	if !sleep:
+		for i in good:
+			for x in good[i]:
+				x = " "+ x + " "
+				if new_text.find(x) != -1:
+					havewords.append(x)
+					angelica = load("res://addons/1f646.png")
+					angelica(angelica)
+					satisfied += 1
+					append_text(str("[b]"+ai_name+"[/b]: - Uhu! You really look "+ i.to_lower()+ "!\n"))
+					append_text(str("[b]"+ai_name+"[/b]: - We might feel this way when our needs are satisfied.\n Can you name one of your needs? (if you need a list type: needs)\n"))
+					break
+		for i in notfeeling:
+			for f in notfeeling[i]:
+				f =  " " + f + " "
+				if new_text.find(f) != -1:
+					angelica = load("res://addons/1f937.png")
+					angelica(angelica)
+					append_text(str('\n- Did you said: "', f.to_lower(), '"? this is not a feeling.\n"', sentences["notfeeling"],"\n"))
+					break
+		for i in bad:
+			for y in bad[i]:
 				y = " " + y + " "
 				if new_text.find(y) != -1:
-					if satisfied <= 0:
-						haveneeds.append(y)
-						angelica = load("res://addons/1f646.png")
-						get_node("Face").set_texture(angelica)
-						get_node("Print").append_bbcode(str("Angelica: - ", i.to_lower(), ", hum?! I miss it too.\n"))
-						break
-					if satisfied > 0:
-						haveneeds.append(y)
-						angelica = load("res://addons/1f646.png")
-						get_node("Face").set_texture(angelica)
-						get_node("Print").append_bbcode(str("Angelica: - ", i.to_lower(), ", hum?! That is awesome!.\n"))
-						break
-					if satisfied == 0:
-						haveneeds.append(y)
-						get_node("Print").append_bbcode(str("Angelica: - I am sorry that I can't say: 'i know how does it feel'... \nI hope that you can find someone real to share your feelings and needs. Bye.\n"))
-						break
-	text = ""
-	if !quiet:
-		if inputs == 6:
+					havewords.append(y)
+					angelica = load("res://addons/1f645.png")
+					angelica(angelica)
+					satisfied -= 1
+					append_text(str("[b]"+ai_name+"[/b]: - Oh! You are ", i.to_lower(), " aren't you?! \n"))
+					append_text(str("[b]"+ai_name+"[/b]: - We might feel this way when our needs are not satisfied.\nCan you identify one of your needs? (for a list of the needs, type: needs)\n"))
+					break
+		if havewords:
+			for i in needs:
+				for y in needs[i]:
+					y = " " + y + " "
+					if new_text.find(y) != -1:
+						if satisfied <= 0:
+							haveneeds.append(y)
+							angelica = load("res://addons/1f646.png")
+							get_node("Face").set_texture(angelica)
+							append_text(str("[b]"+ai_name+"[/b]: - ", i.to_lower(), ", hum?! I miss it too.\n"))
+							break
+						if satisfied > 0:
+							haveneeds.append(y)
+							angelica = load("res://addons/1f646.png")
+							get_node("Face").set_texture(angelica)
+							append_text(str("[b]"+ai_name+"[/b]: - ", i.to_lower(), ", hum?! That is awesome!.\n"))
+							break
+						if satisfied == 0:
+							haveneeds.append(y)
+							append_text(str("[b]"+ai_name+"[/b]: - I am sorry that I can't say: 'i know how does it feel'... \nI hope that you can find someone real to share your feelings and needs. Bye.\n"))
+							break
+		text = ""
+		if inputs == 6 and haveneeds and havewords:
 			angelica = load("res://addons/1f937.png")
 			angelica(angelica)
 			get_node("Face").set_texture(angelica)
-			get_node("Print").append_bbcode(str("Angelica: \n- If you want to talk to someone, maybe you could tell them how you are feeling ", havewords, "\n because you need", haveneeds, " and than ask them to do (or stop doing) something concrete that would make your life more joyful!\n"))
+			append_text(str("[b]"+ai_name+"[/b]: \n- If you want to talk to someone, maybe you could tell them that you feel, ", str(havewords), "\n because of your need for ", str(haveneeds), " and than ask them to do (or stop doing) something concrete that would make your life more joyful!\n"))
 		if inputs == 8:
-			get_node("Print").append_bbcode(str("Angelica: \n- Remember that our freedom of choice lies in the space/time between the input and the response.\n"))
+			append_text(str("[b]"+ai_name+"[/b]: \n- Remember that our freedom of choice lies in the space/time between the input and the response.\n"))
 		if inputs == 9:
-			get_node("Print").append_bbcode(str("Angelica: \n- Ah.. just one more thing: there are many people in the Open Source Community \n that may count on YOUR help to improve the world!\n"))
+			append_text(str("[b]"+ai_name+"[/b]: \n- Ah.. just one more thing: there are many people in the Open Source Community \n that may count on YOUR help to improve the world!\n"))
 			inputs = 0
+			
 func list(what) -> void:
 		for i in what:
-			yield(get_tree().create_timer(0.1), "timeout")
-			get_node("Print").append_bbcode(str(" [b]", i, ": [/b]"))
+			yield(get_tree().create_timer(0.2), "timeout")
+			append_text(str(" -[b] ", i, " [/b]"))
 			for x in what[i]:
 				yield(get_tree().create_timer(0.03), "timeout")
-				get_node("Print").append_bbcode(str(" - ",x))
-
+				append_text(str(" - ",x))
+func append_text(text):
+	get_node("Print").append_bbcode(text)
+	$TextEdit.insert_text_at_cursor(text)
 func _on_Timer_timeout():
 		get_tree().quit()
-
-func _on_Control_gui_input(event):
-	pass
-
-
 func _on_SendButton_button_up():
-	
 	var new_text = get_node("LineEdit").get_text()
-	print(new_text)
 	_on_LineEdit_text_entered(new_text)
-	pass # Replace with function body.
-	pass # Replace with function body.
+func _on_SendButton2_button_up():
+	get_node("Print").set_bbcode($TextEdit.text)
+func _on_OpenShellWeb_pressed():
+	OS.shell_open("https://example.com")
+
+func datetime_to_string(date):
+	if (
+		date.has("year")
+		and date.has("month")
+		and date.has("day")
+		and date.has("hour")
+		and date.has("minute")
+		and date.has("second")
+	):
+		# Date and time.
+		return "{year}-{month}-{day} {hour}:{minute}:{second}".format({
+			year = str(date.year).pad_zeros(2),
+			month = str(date.month).pad_zeros(2),
+			day = str(date.day).pad_zeros(2),
+			hour = str(date.hour).pad_zeros(2),
+			minute = str(date.minute).pad_zeros(2),
+			second = str(date.second).pad_zeros(2),
+		})
+	elif date.has("year") and date.has("month") and date.has("day"):
+		# Date only.
+		return "{year}-{month}-{day}".format({
+			year = str(date.year).pad_zeros(2),
+			month = str(date.month).pad_zeros(2),
+			day = str(date.day).pad_zeros(2),
+		})
+	else:
+		# Time only.
+		return "{hour}:{minute}:{second}".format({
+			hour = str(date.hour).pad_zeros(2),
+			minute = str(date.minute).pad_zeros(2),
+			second = str(date.second).pad_zeros(2),
+		})
