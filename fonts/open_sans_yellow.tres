@@ -4,7 +4,6 @@
 font_path = "res://fonts/OpenSans-Regular.ttf"
 
 [resource]
-size = 21
 outline_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 use_mipmaps = true
 use_filter = true
