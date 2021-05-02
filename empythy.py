@@ -22,8 +22,7 @@ good = {
                     "thrilled"],
     "PEACEFUL": ["peaceful", "calm", "clear", "headed", "comfortable", "centered", "content", "equanimous", "fulfilled",
                  "mellow", "quiet", "relaxed", "relieved", "satisfied", "serene", "still", "tranquil", "trusting"],
-    "REFRESHED": ["refreshed", "enlivened", "rejuvenated", "renewed", "rested", "restored", "revived", "Feelings",
-                  "when", "your", "needs", "are"]
+    "REFRESHED": ["refreshed", "enlivened", "rejuvenated", "renewed", "rested", "restored", "revived"]
 }
 notgood = {
     "AFRAID": ["afraid", "apprehensive", "dread", "foreboding", "frightened", "mistrustful", "panicked", "petrified",
@@ -46,9 +45,9 @@ notgood = {
     "PAIN": ["pain", "agony", "anguished", "bereaved", "devastated", "grief", "heartbroken", "hurt", "lonely",
              "miserable", "regretful", "remorseful"],
     "SAD": ["sad", "depressed", "dejected", "despair", "despondent", "disappointed", "discouraged", "disheartened",
-            "forlorn", "gloomy", "heavy", "hearted", "hopeless", "melancholy", "unhappy", "wretched"],
+            "forlorn", "gloomy", "heavy hearted", "hopeless", "melancholy", "unhappy", "wretched"],
     "TENSE": ["tense", "anxious", "cranky", "distressed", "distraught", "edgy", "fidgety", "frazzled", "irritable",
-              "jittery", "nervous", "overwhelmed", "restless", "stressed", "out"],
+              "jittery", "nervous", "overwhelmed", "restless", "stressed out"],
     "VULNERABLE": ["vulnerable", "fragile", "guarded", "helpless", "insecure", "leery", "reserved", "sensitive",
                    "shaky"],
     "YEARNING": ["yearning", "envious", "jealous", "longing", "nostalgic", "pining", "wistful"
