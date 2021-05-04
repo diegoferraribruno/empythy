@@ -46,10 +46,11 @@ var needs = {
 				]
 }
 var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
+var greetings = {" hello ":"hi, how are are you?"," hi ":"hi, how do you feel?"," hello world ":"HeLlOOOOOOWWWW I am so excited!", " good night ":"good night to you too!"}
 var functions = {
 	"help":["I will give you this list of functions:"],
 	"hello":["Just say hello and i will start chating"],
-	"edit":["I will open (or close) the text editor"],
+	"edit":["I will open/close the text editor"],
 	"needs": ["a list of all the human needs that i know of:"],
 	"feelings":["Will list words that might describe your feelings"],
 	"good":["a list of good feelings"],
@@ -62,14 +63,24 @@ var functions = {
 	"time":["will display system time"],
 	"date":["I will tell you what day is it in YYYY-MM-DD format"],
 	"hashtags":["or # will show your favorite hashtags and add them to the clipboard"],
-	"twiter":["opens web browser at twitter.com"]
+	"name":["name new_user_name"],
+	"color":["ex: color red (blue, green, pink, #dfb000, #000000...)"],
+	"password":["use: Password User_name old_Password new_Password <- IT IS A FAKE YET!"],
+	"add link":["Add link to your list Ex.: add link youtube htpp://youtube.com"],
+	"remove link:":["Ex.: remove link youtube htpp://youtube.com"],
+	"link":["Opens a saved link by the shortcut name Ex.: link twitter"],
+	"add #":["will add a word to your hashtag list: Ex: add # Godot"],
+	"remove #":["will remove a word from your hashtag list: EX: remove # Godot"],
+	"run":["run terminal, godot, nemo, obs, for other try: run app app_name"],
+	"google":["google anything you want it will open a browser with your search."],
+	"save":["I will save your links, favorite hashtags, color and username"],
+	"load":["i wiĺl load your last saved user preferences"]
 	}
 var sentences = {
-	"welcome":"- Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad' or 'good' i will present you some words.\n",
+	"welcome":"Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad' or 'good' i will present you some words.\n",
 	"notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.\n',
-	"help" :"- Hi, I am afraid that all I can tell you is about a list of commands:"
+	"help" :"Hi, I am afraid that all I can tell you is about a list of commands:"
 	}
-var notes = {"hashtags":["#GodotEngine", "#gamedev", "#indiedev", " #indie", " #indiegame", " #IndieGameDev", " #indiegames", "#gaming", "#programming", "#screenshotsaturday\n"]}
-var links = {"twitter":"http://twitter.com","google":"https://google.com"}
-var greetings = {" hello ":"hi, how are are you?"," hi ":"hi, how do you feel?"," hello world ":"HeLlOOOOOOWWWW I am so excited!", " good night ":"good night to you too!"}
+var notes = {"hashtags":["#GodotEngine", "#gamedev", "#indiedev", "#indie", "#indiegame", "#IndieGameDev", "#indiegames", "#gaming", "#programming", "#screenshotsaturday"]}
+var links = [["twitter","google"],["http://twitter.com","https://google.com"]]
 # Working on links...

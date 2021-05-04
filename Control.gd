@@ -3,6 +3,7 @@ extends Control
 var following = false
 var dragging_start_position = Vector2()
 var lastmouseposition = Vector2()
+onready var root = get_node("..")
 func _ready():
 	get_tree().get_root().set_transparent_background(true)
 	
@@ -20,14 +21,10 @@ func _process(_delta):
 			OS.set_window_position(slidewindow)
 		lastmouseposition = get_local_mouse_position()
 
-
 func _on_MinimizeButton_pressed():
 	OS.set_window_minimized(true)
 
 func _on_LinkButton_button_up():
 	var angelica = load("res://addons/1f64b.png")
-	get_node("../Print").append_bbcode(str("[color=#0d0f0b][right]- Bye Bye Angelica.[/right][/color]\n"))
-	get_node("../Face").set_texture(angelica)
-	get_node("../Print").append_bbcode(str("- Bye! If you need me, reload the page or open the app again.\n"))
-	get_node("../Timer").start()
-
+	root._on_LineEdit_text_entered("bye")
+	
