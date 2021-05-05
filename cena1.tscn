@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Ai.gd" type="Script" id=1]
 [ext_resource path="res://addons/1f64b.png" type="Texture" id=2]
@@ -46,6 +46,19 @@ font_path = "res://fonts/OpenSans-Regular.ttf"
 size = 12
 font_data = SubResource( 9 )
 
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="Theme" id=18]
+VScrollBar/styles/LeftScrollBar = null
+VScrollBar/styles/scroll = SubResource( 19 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 12
+outline_color = Color( 0.0352941, 0.0352941, 0.0352941, 0.807843 )
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 5 )
+
 [sub_resource type="DynamicFontData" id=11]
 font_path = "res://fonts/OpenSans-Regular.ttf"
 
@@ -54,8 +67,8 @@ size = 12
 outline_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 use_mipmaps = true
 use_filter = true
-extra_spacing_top = 1
-extra_spacing_bottom = 1
+extra_spacing_top = -1
+extra_spacing_bottom = -1
 extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = SubResource( 11 )
@@ -66,14 +79,13 @@ default_font = ExtResource( 3 )
 [sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 4.0
 content_margin_right = 4.0
-content_margin_top = 0.0
-content_margin_bottom = 0.0
 bg_color = Color( 0.423529, 0.423529, 0.423529, 1 )
 border_color = Color( 0.423529, 0.423529, 0.423529, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+corner_detail = 4
 expand_margin_left = 4.0
 expand_margin_right = 4.0
 
@@ -83,10 +95,10 @@ content_margin_right = 4.0
 content_margin_top = 0.0
 content_margin_bottom = 0.0
 bg_color = Color( 0.423529, 0.423529, 0.423529, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color( 0.8, 0.8, 0.8, 0.447059 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -94,6 +106,13 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 expand_margin_left = 4.0
 expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="Theme" id=21]
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.494118, 0.243137, 0.52549, 1 )
 
 [node name="Angelica" type="Node2D"]
 script = ExtResource( 1 )
@@ -154,9 +173,9 @@ __meta__ = {
 
 [node name="SendButton2" type="LinkButton" parent="Panel/TextEdit"]
 margin_left = 582.204
-margin_top = 384.541
+margin_top = 385.541
 margin_right = 680.204
-margin_bottom = 406.541
+margin_bottom = 407.541
 grow_horizontal = 2
 grow_vertical = 2
 focus_next = NodePath("../../Print")
@@ -171,10 +190,10 @@ __meta__ = {
 
 [node name="Print2" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 127.0
-margin_top = 397.0
-margin_right = 636.0
-margin_bottom = 452.0
+margin_left = 120.0
+margin_top = 418.0
+margin_right = 629.0
+margin_bottom = 463.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 10, 10 )
@@ -182,9 +201,9 @@ focus_next = NodePath("../LineEdit")
 focus_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
-theme = SubResource( 4 )
+theme = SubResource( 18 )
 custom_styles/focus = SubResource( 5 )
-custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/bold_font = SubResource( 16 )
 custom_fonts/normal_font = SubResource( 12 )
 custom_colors/default_color = Color( 0.784314, 0.501961, 0.823529, 1 )
 bbcode_enabled = true
@@ -198,7 +217,7 @@ __meta__ = {
 }
 
 [node name="Face" type="Sprite" parent="."]
-position = Vector2( 38.9247, 446.617 )
+position = Vector2( 38.925, 450 )
 texture = ExtResource( 2 )
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -206,10 +225,10 @@ anchor_left = -20.0
 anchor_top = 10.0
 anchor_right = -20.0
 anchor_bottom = 10.0
-margin_left = 130.0
-margin_top = 442.0
-margin_right = 634.0
-margin_bottom = 477.0
+margin_left = 122.063
+margin_top = 453.112
+margin_right = 626.063
+margin_bottom = 475.112
 focus_neighbour_left = NodePath("SendButton")
 focus_neighbour_top = NodePath("../Print")
 focus_next = NodePath("SendButton")
@@ -252,10 +271,10 @@ __meta__ = {
 }
 
 [node name="LinkBye" type="LinkButton" parent="Control"]
-margin_left = 81.0
-margin_top = 32.0
-margin_right = 121.0
-margin_bottom = 55.0
+margin_left = 79.0
+margin_top = 35.0
+margin_right = 119.0
+margin_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = ExtResource( 3 )
@@ -267,9 +286,9 @@ __meta__ = {
 
 [node name="LinkHide" type="LinkButton" parent="Control"]
 margin_left = 78.0
-margin_top = 10.0
+margin_top = 12.0
 margin_right = 118.0
-margin_bottom = 34.0
+margin_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -285,6 +304,9 @@ wait_time = 1.5
 one_shot = true
 
 [node name="AngelicaTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AngelicaTimer2" type="Timer" parent="."]
 
 [node name="DB" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -296,10 +318,55 @@ color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852, 710.497, 432.731, 76.1949, 432.549, 65.7068, 409.734, 19.2593, 411.255 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 1.49829, 9.70218 )
+position = Vector2( 1.49829, 11.1476 )
 scale = Vector2( 1, 0.985075 )
 color = Color( 1, 1, 1, 0 )
-polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852, 709.325, 397.139, 635.326, 397.139, 82.8575, 397.139, 68.8942, 413.161, 19.1273, 412.522 )
+polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 681.609, 474.719, 681.163, 415.029, 80.6287, 415.481, 68.8942, 413.161, 17.8203, 413.672 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 11.0
+margin_top = 401.0
+margin_right = 67.0
+margin_bottom = 418.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/normal = SubResource( 20 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Warning" type="Panel" parent="."]
+visible = false
+margin_left = 175.439
+margin_top = 286.692
+margin_right = 521.439
+margin_bottom = 449.692
+theme = SubResource( 21 )
+custom_styles/panel = SubResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Warning"]
+margin_left = 122.525
+margin_top = 122.729
+margin_right = 208.525
+margin_bottom = 145.729
+text = "Ok, Thanks!"
+
+[node name="Label" type="Label" parent="Warning"]
+margin_left = 104.413
+margin_top = 44.0307
+margin_right = 217.413
+margin_bottom = 92.0307
+text = "Angelica Says:
+
+YOUR TIME IS UP!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="meta_clicked" from="Panel/Print" to="." method="_on_Print_meta_clicked"]
 [connection signal="button_up" from="Panel/TextEdit/SendButton2" to="." method="_on_SendButton2_button_up"]
@@ -312,3 +379,6 @@ polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852
 [connection signal="button_up" from="Control/LinkBye" to="Control" method="_on_LinkButton_button_up"]
 [connection signal="button_up" from="Control/LinkHide" to="." method="_on_LinkHide_button_up"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="AngelicaTimer" to="." method="_on_AngelicaTimer_timeout"]
+[connection signal="timeout" from="AngelicaTimer2" to="." method="_on_AngelicaTimer2_timeout"]
+[connection signal="button_up" from="Warning/Button" to="." method="_on_Button_button_up"]

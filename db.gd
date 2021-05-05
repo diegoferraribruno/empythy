@@ -72,6 +72,7 @@ var functions = {
 	"--":["---------------------- Operationa Sistem Commands-----------------"],
 	"run":["run terminal, godot, nemo or obs, for other app try: run app app_name"],
 	"time":["will display system time"],
+	"timer":["say Ex.:'timer 65' and i will set an alert for 1 hour and 5 minutes"],
 	"date":["I will tell you what day is today in YYYY-MM-DD format"],
 	"bye":["Just say it and I will be gone!"],
 	"---":["-------------------- lists, links, # notes ----------------"],

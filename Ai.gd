@@ -19,22 +19,65 @@ var inputs = 0
 var angelica = load("res://addons/1f646.png")
 var sleep = true
 var history =[]
+const FILE_NAME = "user://game-data.json"
+var cdtimer
+
 func _ready():
 	angelica(angelica)
 	$LineEdit.grab_focus()
 	angelica_text(str(" "+sentences["welcome"]+""))
 	if OS.get_name() != "HTML5":
 		get_node("Panel/Print").connect("meta_clicked", self, "_on_RichTextLabel_meta_clicked")
-const FILE_NAME = "user://game-data.json"
-
-
 func angelica(angelica):
 	get_node("Face").set_texture(angelica)
-#func run(app):
-#	OS.execute(app,["/"], false)
-func _on_LineEdit_text_entered(new_text):
-	append_text(str("[color="+user[3]+"][right][b]"+user[1]+":[/b] - "+str(new_text)+"[/right][/color]\n"))
+func _on_LineEdit_text_entered(new_text)-> void :
 	var command = new_text.split(" ", true, 3)
+	if command.size() > 1:
+		match command[0].to_lower():
+				"timer":
+					cdtimer = float(command[1])*60
+					$AngelicaTimer.wait_time = cdtimer
+					$AngelicaTimer.start()
+					$AngelicaTimer2.start()
+					angelica_text("your timer is set!")
+				"name":
+					if command[1] != null:
+						user[1] = command[1]
+					else:
+						pass
+				"color":
+					if command[1] != null:
+						user[3] = command[1]
+#						angelica_text(str("[color="+str(command[1])+"]"+str(command[1])+" is a great color![/color]"))
+				"user":
+					if user[1] == command[1]:
+						print(user[1])
+					if command[2] == user[2]:
+						print("password ok")
+				"password":
+					if user[1] == command[1]:
+						if user[2] == command[2]:
+							print("match pass")
+							user[2] = command[3]
+							print("password changed")
+				"link":
+					var key = str(command[1])
+					var z = 0
+					for i in links[0]:
+						if i == key:
+							OS.shell_open(links[1][z])
+							OS.shell_open(links[1][z])
+							angelica_text(str("Opening " +str(command[0] +" at "+str(links[1][z]))))
+						z += 1
+				"google":
+					var searchstring = new_text.split(" ", true)
+					searchstring.remove(0)
+					var search =""
+					for i in searchstring:
+						search += i+"+"
+					OS.shell_open("https://www.google.com/search?q="+search)
+	append_text(str("[color="+user[3]+"][right][b]"+user[1]+":[/b] - "+str(new_text)+"[/right][/color]\n"))
+
 	if command.size() > 1:
 		match command[0].to_lower():
 				"list":
@@ -45,6 +88,7 @@ func _on_LineEdit_text_entered(new_text):
 								text += "[url="+links[1][x]+"]"+links[0][x]+"[/url] "
 								x += 1
 							angelica_text(text)
+							text =""
 						"good": 
 							list(good)
 							append_text(str("\n"))
@@ -105,43 +149,7 @@ func _on_LineEdit_text_entered(new_text):
 										angelica_text("link "+i+" removed. Don't forget to 'save'")
 										break
 									x += 1
-				"name":
-					if command[1] != null:
-						user[1] = command[1]
-					else:
-						pass
-				"color":
-					if command[1] != null:
-						user[3] = command[1]
-						angelica_text(str("[color="+str(command[1])+"]"+str(command[1])+" is a great color![/color]"))
-				"user":
-					if user[1] == command[1]:
-						print(user[1])
-					if command[2] == user[2]:
-						print("password ok")
-				"password":
-					if user[1] == command[1]:
-						if user[2] == command[2]:
-							print("match pass")
-							user[2] = command[3]
-							print("password changed")
-				"link":
-					var key = str(command[1])
-					var z = 0
-					for i in links[0]:
-						if i == key:
-							print (links)
-							OS.shell_open(links[1][z])
-							OS.shell_open(links[1][z])
-							angelica_text(str("Opening " +str(command[0] +" at "+str(links[1][z]))))
-						z += 1
-				"google":
-					var searchstring = new_text.split(" ", true)
-					searchstring.remove(0)
-					var search =""
-					for i in searchstring:
-						search += i+"+"
-					OS.shell_open("https://www.google.com/search?q="+search)
+
 	if command.size() > 2:
 			match command[0].to_lower():
 				"add":
@@ -203,7 +211,7 @@ func _on_LineEdit_text_entered(new_text):
 						user = data
 						notes = user[4]
 						links = user[5]
-						angelica_text("OH! it is you [b]"+user[1]+"[/b]? how are you feeling today?")
+						angelica_text("OH! it is you [b][color="+user[3]+"]"+user[1]+"[/color][/b]? How are you feeling today?")
 					else:
 						printerr("I am sorry, Corrupted data! Reopen the app, and type 'save' to overwrite the file")
 				else:
@@ -412,4 +420,26 @@ func datetime_to_string(date):
 func _on_LinkHide_button_up():
 	var hidetext = get_node("Control/LinkHide").text
 	_on_LineEdit_text_entered(hidetext)
+	pass # Replace with function body.
+
+func _on_AngelicaTimer_timeout():
+	angelica_text("Atention! Timer Expired")
+	angelica = load("res://addons/1f64b.png")
+	get_node("Face").set_texture(angelica)
+	$Warning.visible = true
+func _on_AngelicaTimer2_timeout():
+	if cdtimer > 0:
+		cdtimer -= 1
+		var hour: = int(cdtimer/60/60)
+		var minutes = cdtimer/60
+		minutes = int(fmod(minutes,60))
+		var seconds := fmod(cdtimer, 60)
+		$Label.text = "%02d:%02d:%02d" % [hour, minutes, seconds]
+	else:
+		$AngelicaTimer2.stop()
+		$Label.text = "done"
+
+
+func _on_Button_button_up():
+	$Warning.visible = false
 	pass # Replace with function body.
