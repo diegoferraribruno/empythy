@@ -92,6 +92,7 @@ var functions = {
 	"link":["Opens a saved link by the shortcut name: link twitter","\n to list your links type links"],
 	"add link":["Add link to your list Ex.: add link youtube htpp://youtube.com"],
 	"remove link:":["Ex.: remove link youtube"],
+	"links":["or 'list links' will show your links"],
 	"google":["google anything you want! I will open a browser with your search."],
 
 	}
@@ -101,5 +102,5 @@ var sentences = {
 	"help" :"Hi, I am afraid that all I can tell you is about a list of commands:"
 	}
 var notes = {"hashtags":["#GodotEngine", "#gamedev", "#indiedev", "#indie", "#indiegame", "#IndieGameDev", "#indiegames", "#gaming", "#programming", "#screenshotsaturday"]}
-var links = [["twitter","google"],["http://twitter.com","https://google.com"]]
+var links = [["twitter","google","angelica"],["http://twitter.com","https://google.com","http://diegoferraribruno.itch.io/angelica"]]
 # Working on links...

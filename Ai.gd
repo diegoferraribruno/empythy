@@ -94,16 +94,15 @@ func _on_LineEdit_text_entered(new_text):
 							"#":
 								var i = notes["hashtags"].find(str(command[1],command[2]))
 								notes["hashtags"].remove(i)
+								angelica_text("Hashtag #"+command[2]+" removed. Don't forget to 'save'")
 							"link":
 								var key = str(command[2])
 								var x = 0
 								for i in links[0]:
 									if i == key:
-#										print (links)
 										links[0].remove(x)
 										links[1].remove(x)
-#										print (links)
-										angelica_text("link "+i+" removed. don't forget to 'save'")
+										angelica_text("link "+i+" removed. Don't forget to 'save'")
 										break
 									x += 1
 				"name":
@@ -114,7 +113,7 @@ func _on_LineEdit_text_entered(new_text):
 				"color":
 					if command[1] != null:
 						user[3] = command[1]
-						append_text(str("[color="+str(command[1])+"]"+str(command[1])+" is a great color![/color]\n"))
+						angelica_text(str("[color="+str(command[1])+"]"+str(command[1])+" is a great color![/color]"))
 				"user":
 					if user[1] == command[1]:
 						print(user[1])
@@ -133,9 +132,8 @@ func _on_LineEdit_text_entered(new_text):
 						if i == key:
 							print (links)
 							OS.shell_open(links[1][z])
+							OS.shell_open(links[1][z])
 							angelica_text(str("Opening " +str(command[0] +" at "+str(links[1][z]))))
-#							print (links)
-							break
 						z += 1
 				"google":
 					var searchstring = new_text.split(" ", true)
@@ -145,19 +143,20 @@ func _on_LineEdit_text_entered(new_text):
 						search += i+"+"
 					OS.shell_open("https://www.google.com/search?q="+search)
 	if command.size() > 2:
-		if command.size() > 3:
 			match command[0].to_lower():
 				"add":
 					match command[1]:
 						"#":
 							user[4]["hashtags"].append(str(command[1],command[2]))
-						"link":
-	#							var key = {command[2]:command[3]}
-							links[0].append(command[2])
-							links[1].append(command[3])
-							user[4]["links"] = links
-							text = "link:"+command[2]+" to "+ command[3] + " added to list"
+							text = "Added hashtag:"+command[1]+command[2] + " to # list. Don't forget to 'save'"
 							angelica_text(text)
+						"link":
+							if command.size() > 3:
+								links[0].append(command[2])
+								links[1].append(command[3])
+								user[4]["links"] = links
+								text = "Added link: "+command[2]+" to "+ command[3] + " to list. Don't forget to 'save'"
+								angelica_text(text)
 							text=""
 	match command[0].to_lower():
 			"links":
