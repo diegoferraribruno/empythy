@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Ai.gd" type="Script" id=1]
 [ext_resource path="res://addons/1f64b.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Control.gd" type="Script" id=4]
 [ext_resource path="res://fonts/open_sans_bold.tres" type="DynamicFontData" id=5]
 [ext_resource path="res://db.gd" type="Script" id=6]
-[ext_resource path="res://UserPrefs.gd" type="Script" id=7]
 [ext_resource path="res://Print.gd" type="Script" id=8]
 
 [sub_resource type="Theme" id=1]
@@ -31,12 +30,40 @@ size = 14
 outline_color = Color( 0.0352941, 0.0352941, 0.0352941, 0.807843 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="Theme" id=7]
 
-[sub_resource type="Theme" id=8]
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://fonts/OpenSans-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 12
+font_data = SubResource( 9 )
+
+[sub_resource type="DynamicFontData" id=11]
+font_path = "res://fonts/OpenSans-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+size = 12
+outline_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = 1
+extra_spacing_bottom = 1
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = SubResource( 11 )
+
+[sub_resource type="Theme" id=13]
 default_font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 0.0
@@ -50,7 +77,7 @@ corner_radius_bottom_left = 4
 expand_margin_left = 4.0
 expand_margin_right = 4.0
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=15]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 0.0
@@ -72,10 +99,11 @@ expand_margin_right = 4.0
 script = ExtResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 1.58575
-margin_top = 1.58582
-margin_right = 716.586
-margin_bottom = 430.586
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 718.0
+margin_bottom = 431.0
+mouse_filter = 1
 theme = SubResource( 1 )
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
@@ -83,10 +111,10 @@ __meta__ = {
 }
 
 [node name="Print" type="RichTextLabel" parent="Panel"]
-margin_left = 10.0
-margin_top = 9.0
-margin_right = 703.0
-margin_bottom = 400.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 708.0
+margin_bottom = 394.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 10, 10 )
@@ -111,21 +139,24 @@ __meta__ = {
 
 [node name="TextEdit" type="TextEdit" parent="Panel"]
 visible = false
-margin_left = 21.4142
-margin_top = 310.213
-margin_right = 704.414
-margin_bottom = 417.213
-custom_styles/normal = SubResource( 7 )
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 704.0
+margin_bottom = 417.0
+theme = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.0196078, 0.682353, 0.101961, 1 )
 smooth_scrolling = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SendButton2" type="LinkButton" parent="Panel/TextEdit"]
-margin_left = 552.308
-margin_top = 78.0294
-margin_right = 680.308
-margin_bottom = 110.029
+margin_left = 582.204
+margin_top = 384.541
+margin_right = 680.204
+margin_bottom = 406.541
 grow_horizontal = 2
 grow_vertical = 2
 focus_next = NodePath("../../Print")
@@ -134,6 +165,34 @@ focus_mode = 2
 custom_fonts/font = ExtResource( 3 )
 text = "update chat"
 underline = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Print2" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 127.0
+margin_top = 397.0
+margin_right = 636.0
+margin_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 10, 10 )
+focus_next = NodePath("../LineEdit")
+focus_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 12 )
+custom_colors/default_color = Color( 0.784314, 0.501961, 0.823529, 1 )
+bbcode_enabled = true
+tab_size = 7
+scroll_following = true
+selection_enabled = true
+custom_effects = [ null, null, null, null, null ]
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -148,16 +207,16 @@ anchor_top = 10.0
 anchor_right = -20.0
 anchor_bottom = 10.0
 margin_left = 130.0
-margin_top = 437.0
+margin_top = 442.0
 margin_right = 634.0
-margin_bottom = 472.0
+margin_bottom = 477.0
 focus_neighbour_left = NodePath("SendButton")
 focus_neighbour_top = NodePath("../Print")
 focus_next = NodePath("SendButton")
 focus_previous = NodePath("../Print")
-theme = SubResource( 8 )
-custom_styles/focus = SubResource( 10 )
-custom_styles/normal = SubResource( 9 )
+theme = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
 clear_button_enabled = true
 placeholder_text = " "
 caret_blink = true
@@ -192,15 +251,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LinkButton" type="LinkButton" parent="Control"]
-margin_left = 82.0
-margin_top = 22.0
-margin_right = 113.0
-margin_bottom = 46.0
+[node name="LinkBye" type="LinkButton" parent="Control"]
+margin_left = 81.0
+margin_top = 32.0
+margin_right = 121.0
+margin_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = ExtResource( 3 )
-text = "Bye"
+text = "bye"
+underline = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkHide" type="LinkButton" parent="Control"]
+margin_left = 78.0
+margin_top = 10.0
+margin_right = 118.0
+margin_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+custom_fonts/font = ExtResource( 3 )
+text = "hide"
 underline = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -215,14 +289,26 @@ one_shot = true
 [node name="DB" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[node name="UserPrefs" type="Node" parent="."]
-script = ExtResource( 7 )
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2( 1.49829, 7.18234 )
+scale = Vector2( 1, 0.985075 )
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852, 710.497, 432.731, 76.1949, 432.549, 65.7068, 409.734, 19.2593, 411.255 )
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 1.49829, 9.70218 )
+scale = Vector2( 1, 0.985075 )
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852, 709.325, 397.139, 635.326, 397.139, 82.8575, 397.139, 68.8942, 413.161, 19.1273, 412.522 )
+
+[connection signal="meta_clicked" from="Panel/Print" to="." method="_on_Print_meta_clicked"]
 [connection signal="button_up" from="Panel/TextEdit/SendButton2" to="." method="_on_SendButton2_button_up"]
+[connection signal="meta_clicked" from="Print2" to="." method="_on_Print_meta_clicked"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="text_entered" from="LineEdit" to="Panel/Print" method="_on_LineEdit_text_entered"]
 [connection signal="button_up" from="LineEdit/SendButton" to="." method="_on_SendButton_button_up"]
 [connection signal="button_up" from="LineEdit/SendButton" to="Panel/Print" method="_on_SendButton_button_up"]
 [connection signal="gui_input" from="Control" to="Control" method="_on_Control_gui_input"]
-[connection signal="button_up" from="Control/LinkButton" to="Control" method="_on_LinkButton_button_up"]
+[connection signal="button_up" from="Control/LinkBye" to="Control" method="_on_LinkButton_button_up"]
+[connection signal="button_up" from="Control/LinkHide" to="." method="_on_LinkHide_button_up"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

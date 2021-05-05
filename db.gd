@@ -46,39 +46,58 @@ var needs = {
 				]
 }
 var notfeeling = {"judgment":["used","guilt","abused","misled","abandoned","atacked","betraid","intimidated","diminuished","manipulated","rejected","pushed","provoked","unapreciated","unheard","unseem","used"]}
-var greetings = {" hello ":"hi, how are are you?"," hi ":"hi, how do you feel?"," hello world ":"HeLlOOOOOOWWWW I am so excited!", " good night ":"good night to you too!"}
+var greetings = {
+	" hello ":"hi, how are are you?",
+	" hi ":"hi, how do you feel?",
+	" hello world ":"Hello world! I am so excited to exist!",
+	" good night ":"good night to you too!",
+	" good morning ":"Good morning, I whish you have an amazing day!",
+	" i love you ":"Of course you do, I am made of love.",
+	" say something ": "I wish i could give you a big hug!"
+	}
 var functions = {
-	"help":["I will give you this list of functions:"],
-	"hello":["Just say hello and i will start chating"],
-	"edit":["I will open/close the text editor"],
+	"help":["Say: help 'word' - And I'll tell you what that command does'"],
+	"-":["------------------------- Chat commands -------------------------"],
+	"hello":["Just say hello and i will start chating"," then we can talk about our feelings and needs"],
+	"list feelings":["I will list words that might describe your feelings"],
+	"good":["I will give you a list of good feelings"],
+	"bad":["I will give you a list bad feeelings"], 
 	"needs": ["a list of all the human needs that i know of:"],
-	"feelings":["Will list words that might describe your feelings"],
-	"good":["a list of good feelings"],
-	"bad":["a list bad feeelings"], 
-	"notes":["Show all saved notes"],
-	"new" : ["reset our chat (So we can pretend we never met!)"],
-	"clear":["I Will wipe out this chatbox"],
-	"bye":["Just say it and I will be gone!"],
+	"new" : ["Reset our conversation"],
 	"sleep":["I will stop talking about feelings and needs."],
+	"editor":["I will open/close the internal text editor"],
+	"clear":["wipe out this chatbox"],
+	"hide":["will hide/show the text panel"],
+	"show":["will show/hide the text panel"],
+	"--":["---------------------- Operationa Sistem Commands-----------------"],
+	"run":["run terminal, godot, nemo or obs, for other app try: run app app_name"],
 	"time":["will display system time"],
-	"date":["I will tell you what day is it in YYYY-MM-DD format"],
-	"hashtags":["or # will show your favorite hashtags and add them to the clipboard"],
+	"date":["I will tell you what day is today in YYYY-MM-DD format"],
+	"bye":["Just say it and I will be gone!"],
+	"---":["-------------------- lists, links, # notes ----------------"],
+	"list":["feelings, good, bad, needs, links and #"],
+#	"notes":["Show all saved notes"],
+	"----":["---------------------- # Hashtag Assistant ---------------------"],
+	"#":["or # will show your favorite hashtags and copy them to the clipboard"],
+	"add #":["will add a word to your hashtag list: Ex: add # GodotEngine"],
+	"remove #":["will remove a word from your hashtag list: EX: remove # GodotEngine"],
+	"list #":["I will list of all hashtags but won't copy them"],
+	"-----":["---------------------- User Commands-----------------"],
 	"name":["name new_user_name"],
 	"color":["ex: color red (blue, green, pink, #dfb000, #000000...)"],
-	"password":["use: Password User_name old_Password new_Password <- IT IS A FAKE YET!"],
+	"save":["Actual lists, links, hashtags, color and username will be saved over the last profile"],
+	"load":["I wiĺl load your last saved user preferences"],
+#	"password":["Password User_name old_Password new_Password < Just,dont!!"],
+	"------":["---------------------- Web and link Commands-----------------"],
+	"link":["Opens a saved link by the shortcut name: link twitter","\n to list your links type links"],
 	"add link":["Add link to your list Ex.: add link youtube htpp://youtube.com"],
-	"remove link:":["Ex.: remove link youtube htpp://youtube.com"],
-	"link":["Opens a saved link by the shortcut name Ex.: link twitter"],
-	"add #":["will add a word to your hashtag list: Ex: add # Godot"],
-	"remove #":["will remove a word from your hashtag list: EX: remove # Godot"],
-	"run":["run terminal, godot, nemo, obs, for other try: run app app_name"],
-	"google":["google anything you want it will open a browser with your search."],
-	"save":["I will save your links, favorite hashtags, color and username"],
-	"load":["i wiĺl load your last saved user preferences"]
+	"remove link:":["Ex.: remove link youtube"],
+	"google":["google anything you want! I will open a browser with your search."],
+
 	}
 var sentences = {
-	"welcome":"Hi, how are you feeling today? \n(if you need assistance just type help)\nIf you say just 'bad' or 'good' i will present you some words.\n",
-	"notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.\n',
+	"welcome":"Hi, how are you feeling today?\n If you say just 'bad' or 'good' i will present you some words.\n (to know what i can do, just say 'help' and don't forget to 'load' if you have saved anything)",
+	"notfeeling":'It is important to choose words that really are feelings. If you use words like "abandoned" or "misled"or "unheard" we can prevent ourselves from getting to the REAL feelings. These words are more like accusations or judgments than feelings.',
 	"help" :"Hi, I am afraid that all I can tell you is about a list of commands:"
 	}
 var notes = {"hashtags":["#GodotEngine", "#gamedev", "#indiedev", "#indie", "#indiegame", "#IndieGameDev", "#indiegames", "#gaming", "#programming", "#screenshotsaturday"]}
