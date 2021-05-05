@@ -145,21 +145,20 @@ func _on_LineEdit_text_entered(new_text):
 						search += i+"+"
 					OS.shell_open("https://www.google.com/search?q="+search)
 	if command.size() > 2:
-		match command[0].to_lower():
-			"add":
-				match command[1]:
-					"#":
-						user[4]["hashtags"].append(str(command[1],command[2]))
-					"link":
-#							var key = {command[2]:command[3]}
-						links[0].push_front(command[2])
-						links[1].push_front(command[3])
-						user[4]["links"]=links
-						text = "link:"+command[1]+" to "+ command[2] + " added to list"
-						angelica_text(text)
-
-
-
+		if command.size() > 3:
+			match command[0].to_lower():
+				"add":
+					match command[1]:
+						"#":
+							user[4]["hashtags"].append(str(command[1],command[2]))
+						"link":
+	#							var key = {command[2]:command[3]}
+							links[0].append(command[2])
+							links[1].append(command[3])
+							user[4]["links"] = links
+							text = "link:"+command[2]+" to "+ command[3] + " added to list"
+							angelica_text(text)
+							text=""
 	match command[0].to_lower():
 			"links":
 					_on_LineEdit_text_entered("list links")
@@ -206,15 +205,10 @@ func _on_LineEdit_text_entered(new_text):
 						notes = user[4]
 						links = user[5]
 						angelica_text("OH! it is you [b]"+user[1]+"[/b]? how are you feeling today?")
-						
 					else:
 						printerr("I am sorry, Corrupted data! Reopen the app, and type 'save' to overwrite the file")
 				else:
 					printerr("No saved data! type 'save' to make a new file. \n Remember to aways save after making changes.")
-#	if command[0] in links[0]:
-#		OS.shell_open(links[command[0]])
-#		angelica_text(str(" - Opening " +str(command[0] +" at "+str(links[command[0]])+"\n")))
-				
 	history.append(new_text)
 	new_text = " " + new_text.to_lower() + " "
 	new_text = new_text.replace(",", " ");
@@ -222,8 +216,6 @@ func _on_LineEdit_text_entered(new_text):
 	new_text = new_text.replace("!", " ");
 	$LineEdit.clear()
 	inputs += 1
-#	if new_text == " twitter ":
-#		OS.shell_open("https://twitter.com")
 	if new_text == " functions ":
 		for i in functions:
 			append_text(str(i+": "+functions[i][0]+"\n"))
@@ -238,9 +230,6 @@ func _on_LineEdit_text_entered(new_text):
 		get_node("Print2").set_bbcode("")
 		get_node("Panel/Print").set_bbcode("")
 		get_node("Panel/TextEdit").text = ""
-		
-	
-		
 	if new_text == " hashtags " or new_text == " # ":
 		var clipboard = ""
 		var hashtags = user[4]["hashtags"]
@@ -352,7 +341,7 @@ func _on_LineEdit_text_entered(new_text):
 				angelica_text(str("Ah, just one more thing: help the Open Source Community to improve the world!"))
 			if inputs == 20:
 				inputs = 0
-			
+	
 func list(what) -> void:
 		for i in what:
 			yield(get_tree().create_timer(0.6), "timeout")
@@ -360,12 +349,13 @@ func list(what) -> void:
 			for x in what[i]:
 				yield(get_tree().create_timer(0.02), "timeout")
 				append_text(str(" - ",x))
-				
+	
 func angelica_text(text):
 	text = str("[b]"+ai_name+"[/b]: - "+text+"\n")
 	get_node("Panel/Print").append_bbcode(text)
 	get_node("Panel/TextEdit").insert_text_at_cursor(text)
 	get_node("Print2").append_bbcode(text)
+	
 func append_text(text):
 	get_node("Panel/Print").append_bbcode(text)
 	get_node("Panel/TextEdit").insert_text_at_cursor(text)
@@ -385,6 +375,7 @@ func _on_SendButton2_button_up():
 #	OS.shell_open("https://example.com")
 func _on_Print_meta_clicked(meta):
 	OS.shell_open(meta)
+	
 func datetime_to_string(date):
 	if (
 		date.has("year")
