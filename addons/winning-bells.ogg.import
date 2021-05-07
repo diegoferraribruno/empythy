@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/winning-bells.ogg-076fdb9311d33925ecd03eedf4bc56c7.oggstr"
+
+[deps]
+
+source_file="res://addons/winning-bells.ogg"
+dest_files=[ "res://.import/winning-bells.ogg-076fdb9311d33925ecd03eedf4bc56c7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
