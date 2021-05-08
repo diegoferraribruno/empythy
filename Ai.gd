@@ -182,13 +182,6 @@ func _on_LineEdit_text_entered(new_text)-> void :
 							text_to_say("UHU! New colous! \n Did you know that i can use RGB colors like #ffddbb")
 						"learn":
 							text_to_say("I am not learning new sentences yet.")
-				"autoload":
-					if command[1] == "true":
-						autoload = true
-						user[6][4] = true
-					if command[1] == "false":
-						autoload = false
-						user[6][4] = false
 				"timer":
 					cdtimer = float(command[1])*60
 					$AngelicaTimer.wait_time = cdtimer
