@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Ai.gd" type="Script" id=1]
 [ext_resource path="res://addons/1f64b.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://db.gd" type="Script" id=6]
 [ext_resource path="res://addons/winning-bells.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Print.gd" type="Script" id=8]
+[ext_resource path="res://LineEdit.gd" type="Script" id=9]
 
 [sub_resource type="Theme" id=1]
 
@@ -149,10 +150,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -350.0
-margin_top = -198.5
-margin_right = 350.0
-margin_bottom = 193.5
+margin_left = -378.991
+margin_top = -187.893
+margin_right = 321.009
+margin_bottom = 204.107
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 10, 10 )
@@ -208,6 +209,7 @@ __meta__ = {
 }
 
 [node name="Print2" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 120.0
 margin_top = 418.0
 margin_right = 629.0
@@ -249,7 +251,7 @@ offset = Vector2( 0, -32 )
 position = Vector2( -1.65151, 10.9621 )
 scale = Vector2( 1, 0.985075 )
 color = Color( 1, 1, 1, 0 )
-polygon = PoolVector2Array( 7.27283, 424.944, 5.82603, 475.413, 709.656, 472.852, 710.497, 432.731, 397.005, 373.387, 261.62, 369.973, 65.7068, 409.734, 19.2593, 411.255 )
+polygon = PoolVector2Array( 5.68273, 428.076, 5.82603, 475.413, 709.656, 472.852, 710.497, 432.731, 533.184, 426.64, 460.352, 377.829, 260.241, 377.111, 194.48, 428.794, 71.4437, 430.947, 67.201, 415.155, 33.2599, 411.566 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 1.49829, 11.1476 )
@@ -262,20 +264,18 @@ anchor_left = -20.0
 anchor_top = 10.0
 anchor_right = -20.0
 anchor_bottom = 10.0
-margin_left = 136.932
-margin_top = 451.318
-margin_right = 636.932
-margin_bottom = 473.318
-focus_neighbour_left = NodePath("SendButton")
-focus_neighbour_top = NodePath("../Print")
-focus_next = NodePath("SendButton")
-focus_previous = NodePath("../Print")
+margin_left = 134.412
+margin_top = 455.098
+margin_right = 634.412
+margin_bottom = 477.098
+focus_mode = 1
 theme = SubResource( 16 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 clear_button_enabled = true
 placeholder_text = " "
 caret_blink = true
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -324,10 +324,10 @@ __meta__ = {
 }
 
 [node name="LinkBye" type="LinkButton" parent="Control"]
-margin_left = 77.3351
-margin_top = 44.1942
-margin_right = 117.335
-margin_bottom = 66.1942
+margin_left = 78.0422
+margin_top = 42.0
+margin_right = 118.042
+margin_bottom = 64.0729
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = ExtResource( 3 )
@@ -338,10 +338,10 @@ __meta__ = {
 }
 
 [node name="Linkmini" type="LinkButton" parent="Control"]
-margin_left = 72.0
-margin_top = 16.5227
-margin_right = 85.0
-margin_bottom = 36.5227
+margin_left = 75.5355
+margin_top = 17.2298
+margin_right = 88.5355
+margin_bottom = 37.2298
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -419,6 +419,7 @@ stream = ExtResource( 7 )
 [connection signal="meta_clicked" from="Panel/Print" to="." method="_on_Print_meta_clicked"]
 [connection signal="button_up" from="Panel/TextEdit/SendButton2" to="." method="_on_SendButton2_button_up"]
 [connection signal="meta_clicked" from="Print2" to="." method="_on_Print_meta_clicked"]
+[connection signal="gui_input" from="LineEdit" to="." method="_on_LineEdit_gui_input"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="text_entered" from="LineEdit" to="Panel/Print" method="_on_LineEdit_text_entered"]
 [connection signal="button_up" from="LineEdit/SendButton" to="." method="_on_SendButton_button_up"]

@@ -29,9 +29,9 @@ var new_face = load("res://addons/1f646.png")
 var sleep = true
 var history =["enter text here"]
 var cdtimer
-var autohide = false
+var autohide = true
 var autoload = true
-var autosave = false
+var autosave = true
 var editing
 
 func preload_saved():
@@ -47,9 +47,9 @@ func preload_saved():
 							autosave = false
 						if buser[6][0] == ai_version:
 							autoload = buser[6][4]
-							print(autoload)
-							if autoload == true:
-								load_user_prefs()
+#							print(autoload)
+#							if autoload == true:
+							load_user_prefs()
 
 func load_user_prefs():
 				var file = File.new()
@@ -66,6 +66,7 @@ func load_user_prefs():
 						autoload = user[6][4]
 						autosave = user[6][5]
 						autohide = user[6][3]
+						
 						text_to_say("OH! it is you [b][color="+user[3]+"]"+user[1]+"[/color][/b]? How are you feeling today?")
 					else:
 						printerr("I am sorry, Corrupted data! Reopen the app, and type 'save' to overwrite the file")
@@ -81,7 +82,8 @@ func save_prefs():
 func _process(delta):
 	if !OS.is_window_focused() and autohide == true:
 		change_state("mini")
-	
+func _teste():
+	text_to_say("maravilha")
 		
 func _ready():
 #	save_prefs() # it will reset user prefs in case of inconsistences
@@ -362,7 +364,27 @@ func _on_LineEdit_text_entered(new_text)-> void :
 #				if command[1] == str(user[2]):
 			"load":
 				load_user_prefs()
-	history.append(new_text)
+			"autoload":
+				autoload = !autoload
+				user[6][4] = autoload
+				text_to_say("autoload is "+str(autoload))
+			"autosave":
+				autosave = !autosave
+				user[6][5] = autosave
+				text_to_say("autosave is "+str(autosave))
+			"user":
+				text_to_say(str(user))
+			"notes":
+				text_to_say(str(user[4]))
+			"ai_name":
+				pass #user[6][1] = command[1]+" "+command[2]
+			"ai_color": 
+				pass #user[6][2]
+			"autohide":
+				autohide = !autohide
+				user[6][3] = autohide
+				text_to_say(("autohide is "+str(autohide)))
+	history.push_front(new_text)
 	new_text = " " + new_text.to_lower() + " "
 	new_text = new_text.replace(",", " ");
 	new_text = new_text.replace(".", " ");
@@ -590,12 +612,7 @@ func _on_AngelicaTimer2_timeout():
 		$AngelicaTimer2.stop()
 		$Label.text = ""
 		
-#func hide():
-#	if get_node("Panel").visible:
-#		get_node("Panel").visible = false
-#		OS.set_window_mouse_passthrough($Polygon2D.polygon)
-#		get_node("Print2").visible = true
-#		get_node("LineEdit/LinkHide").text = "show"
+
 func _on_Button_button_up():
 	$Warning.visible = false
 func _on_TimerMini_timeout():
@@ -605,23 +622,20 @@ func _on_Control_gui_input(InputEventMouseButton):
 				"mini":
 					change_state(state_old)
 
-#func _on_LineEdit_focus_entered():
-##	$LineEdit.text = history[0]
-#	pass # Replace with function body.
+func _on_LineEdit_focus_entered():
+	$LineEdit.text = history[0]
+	pass # Replace with function body.
+var n = 0
+func _on_LineEdit_gui_input(event):
+	if Input.is_action_just_released("ui_up"):
+		var history_max = history.size()-1
+		print (n," de", history_max)
+#		history.push_front($LineEdit.text)
+		if n < history_max:
+				if history[n] != null:
+					$LineEdit.text = history[n]
+					n+=1
 
-#var n = 0
-#func _on_LineEdit_gui_input(event):
-#	if Input.is_action_just_released("ui_up"):
-#		var history_max = history.size()-1
-#		print (n," de", history_max)
-##			history.push_front($LineEdit.text)
-#		if n < history_max:
-#				if history[n] != null:
-#					n+=1
-#					$LineEdit.text = history[n]
-#
-#	if Input.is_action_just_released("ui_down") and n >= 1:
-#			n-=1
-#			$LineEdit.text = history[n]
-#
-#	pass # Replace with function body.
+	if Input.is_action_just_released("ui_down") and n >= 1:
+			n-=1
+			$LineEdit.text = history[n]

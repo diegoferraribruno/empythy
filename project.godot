@@ -14,10 +14,15 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Empythy - GoBot"
+config/name="Angelica - Nonvilence chat helper"
+config/description="version alpha 01 date and time!"
 run/main_scene="res://cena1.tscn"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 0.541176 )
 config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=24
 
 [display]
 
@@ -25,12 +30,17 @@ window/size/width=720
 window/size/height=480
 window/size/resizable=false
 window/size/borderless=true
-window/dpi/allow_hidpi=true
+window/size/always_on_top=true
+window/size/test_width=720
+window/size/test_height=480
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
+window/energy_saving/keep_screen_on=false
 window/handheld/orientation="portrait"
+window/stretch/aspect="keep_width"
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/driver/fallback_to_gles2=true
 environment/default_environment="res://default_env.tres"
